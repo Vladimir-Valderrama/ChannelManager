@@ -1,0 +1,90 @@
+{
+    "HOTELS": [
+      {
+        "hotel_id": 1,
+        "nombre": "Hotel Example",
+        "direccion": "123 Example St",
+        "numero_habitaciones": 100,
+        "categoria": "5 estrellas"
+      }
+    ],
+    "HOTEL_SERVICES": [
+      {
+        "servicio_id": 1,
+        "hotel_id": 1,
+        "descripcion": "Servicio de Spa",
+        "costo": 50.0
+      }
+    ],
+    "RESERVATIONS": [
+      {
+        "reserva_id": 1,
+        "fecha_reserva": "2024-10-08",
+        "fecha_entrada": "2024-11-01",
+        "fecha_salida": "2024-11-05",
+        "estado_reserva": "confirmada",
+        "hotel_id": 1,
+        "usuario_id": 1,
+        "ota_id": 1
+      }
+    ],
+    "USERS": [
+      {
+        "usuario_id": 1,
+        "nombre_completo": "John Doe",
+        "correo_electronico": "john.doe@example.com",
+        "tipo_usuario": "cliente",
+        "telefono": "+1234567890"
+      }
+    ],
+    "OTAS": [
+      {
+        "ota_id": 1,
+        "nombre": "Booking.com",
+        "url_ota": "https://www.booking.com",
+        "contacto_comercial": "comercial@booking.com"
+      }
+    ],
+    "PAYMENT_TRANSACTIONS": [
+      {
+        "transaccion_id": 1,
+        "monto": 500.0,
+        "metodo_pago": "tarjeta de crédito",
+        "fecha_pago": "2024-10-08",
+        "reserva_id": 1
+      }
+    ],
+    "STOCK_SYNCHRONIZATION": [
+      {
+        "sincronizacion_id": 1,
+        "fecha_actualizacion": "2024-10-07",
+        "cantidad_disponible": 50,
+        "hotel_id": 1
+      }
+    ],
+    "DATA_USAGE": [
+      {
+        "uso_id": 1,
+        "usuario_id": 1,
+        "fecha_acceso": "2024-10-08",
+        "metodo_acceso": "web"
+      }
+    ],
+    "AUDIT": [
+      {
+        "auditoria_id": 1,
+        "usuario_id": 1,
+        "accion_realizada": "reserva realizada",
+        "fecha_hora": "2024-10-08T12:00:00",
+        "detalles": "Reservó una habitación en el hotel Example"
+      }
+    ],
+    "ROLES": [
+      {
+        "rol_id": 1,
+        "nombre_rol": "admin",
+        "descripcion": "Administrador del sistema"
+      }
+    ]
+  }
+  

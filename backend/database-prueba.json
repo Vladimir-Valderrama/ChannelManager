@@ -1,90 +1,156 @@
 {
-    "HOTELS": [
-      {
-        "hotel_id": 1,
-        "nombre": "Hotel Example",
-        "direccion": "123 Example St",
-        "numero_habitaciones": 100,
-        "categoria": "5 estrellas"
-      }
-    ],
-    "HOTEL_SERVICES": [
-      {
-        "servicio_id": 1,
-        "hotel_id": 1,
-        "descripcion": "Servicio de Spa",
-        "costo": 50.0
-      }
-    ],
-    "RESERVATIONS": [
-      {
-        "reserva_id": 1,
-        "fecha_reserva": "2024-10-08",
-        "fecha_entrada": "2024-11-01",
-        "fecha_salida": "2024-11-05",
-        "estado_reserva": "confirmada",
-        "hotel_id": 1,
-        "usuario_id": 1,
-        "ota_id": 1
-      }
-    ],
-    "USERS": [
-      {
-        "usuario_id": 1,
-        "nombre_completo": "John Doe",
-        "correo_electronico": "john.doe@example.com",
-        "tipo_usuario": "cliente",
-        "telefono": "+1234567890"
-      }
-    ],
-    "OTAS": [
-      {
-        "ota_id": 1,
-        "nombre": "Booking.com",
-        "url_ota": "https://www.booking.com",
-        "contacto_comercial": "comercial@booking.com"
-      }
-    ],
-    "PAYMENT_TRANSACTIONS": [
-      {
-        "transaccion_id": 1,
-        "monto": 500.0,
-        "metodo_pago": "tarjeta de crédito",
-        "fecha_pago": "2024-10-08",
-        "reserva_id": 1
-      }
-    ],
-    "STOCK_SYNCHRONIZATION": [
-      {
-        "sincronizacion_id": 1,
-        "fecha_actualizacion": "2024-10-07",
-        "cantidad_disponible": 50,
-        "hotel_id": 1
-      }
-    ],
-    "DATA_USAGE": [
-      {
-        "uso_id": 1,
-        "usuario_id": 1,
-        "fecha_acceso": "2024-10-08",
-        "metodo_acceso": "web"
-      }
-    ],
-    "AUDIT": [
-      {
-        "auditoria_id": 1,
-        "usuario_id": 1,
-        "accion_realizada": "reserva realizada",
-        "fecha_hora": "2024-10-08T12:00:00",
-        "detalles": "Reservó una habitación en el hotel Example"
-      }
-    ],
-    "ROLES": [
-      {
-        "rol_id": 1,
-        "nombre_rol": "admin",
-        "descripcion": "Administrador del sistema"
-      }
-    ]
-  }
-  
+  "HOTELS": [
+    {
+      "hotel_id": 1,
+      "nombre": "Hotel Example",
+      "direccion": "123 Example St",
+      "numero_habitaciones": 100,
+      "categoria": "5 estrellas"
+    },
+    {
+      "hotel_id": 2,
+      "nombre": "Hotel Sunset",
+      "direccion": "456 Sunset Blvd",
+      "numero_habitaciones": 80,
+      "categoria": "4 estrellas"
+    }
+  ],
+  "HOTEL_SERVICES": [
+    {
+      "servicio_id": 1,
+      "hotel_id": 1,
+      "descripcion": "Servicio de Spa",
+      "costo": 50.0
+    },
+    {
+      "servicio_id": 2,
+      "hotel_id": 2,
+      "descripcion": "Servicio de Gimnasio",
+      "costo": 30.0
+    }
+  ],
+  "RESERVATIONS": [
+    {
+      "reserva_id": 1,
+      "fecha_reserva": "2024-10-08",
+      "fecha_entrada": "2024-11-01",
+      "fecha_salida": "2024-11-05",
+      "estado_reserva": "confirmada",
+      "hotel_id": 1,
+      "usuario_id": 1,
+      "ota_id": 1
+    },
+    {
+      "reserva_id": 2,
+      "fecha_reserva": "2024-10-10",
+      "fecha_entrada": "2024-12-01",
+      "fecha_salida": "2024-12-05",
+      "estado_reserva": "pendiente",
+      "hotel_id": 2,
+      "usuario_id": 2,
+      "ota_id": 2
+    }
+  ],
+  "USERS": [
+    {
+      "usuario_id": 1,
+      "nombre_completo": "John Doe",
+      "correo_electronico": "john.doe@example.com",
+      "tipo_usuario": "cliente",
+      "telefono": "+1234567890"
+    },
+    {
+      "usuario_id": 2,
+      "nombre_completo": "Jane Smith",
+      "correo_electronico": "jane.smith@example.com",
+      "tipo_usuario": "cliente",
+      "telefono": "+0987654321"
+    }
+  ],
+  "OTAS": [
+    {
+      "ota_id": 1,
+      "nombre": "Booking.com",
+      "url_ota": "https://www.booking.com",
+      "contacto_comercial": "comercial@booking.com"
+    },
+    {
+      "ota_id": 2,
+      "nombre": "Expedia",
+      "url_ota": "https://www.expedia.com",
+      "contacto_comercial": "comercial@expedia.com"
+    }
+  ],
+  "PAYMENT_TRANSACTIONS": [
+    {
+      "transaccion_id": 1,
+      "monto": 500.0,
+      "metodo_pago": "tarjeta de crédito",
+      "fecha_pago": "2024-10-08",
+      "reserva_id": 1
+    },
+    {
+      "transaccion_id": 2,
+      "monto": 400.0,
+      "metodo_pago": "Paypal",
+      "fecha_pago": "2024-10-11",
+      "reserva_id": 2
+    }
+  ],
+  "STOCK_SYNCHRONIZATION": [
+    {
+      "sincronizacion_id": 1,
+      "fecha_actualizacion": "2024-10-07",
+      "cantidad_disponible": 50,
+      "hotel_id": 1
+    },
+    {
+      "sincronizacion_id": 2,
+      "fecha_actualizacion": "2024-10-09",
+      "cantidad_disponible": 30,
+      "hotel_id": 2
+    }
+  ],
+  "DATA_USAGE": [
+    {
+      "uso_id": 1,
+      "usuario_id": 1,
+      "fecha_acceso": "2024-10-08",
+      "metodo_acceso": "web"
+    },
+    {
+      "uso_id": 2,
+      "usuario_id": 2,
+      "fecha_acceso": "2024-10-10",
+      "metodo_acceso": "mobile"
+    }
+  ],
+  "AUDIT": [
+    {
+      "auditoria_id": 1,
+      "usuario_id": 1,
+      "accion_realizada": "reserva realizada",
+      "fecha_hora": "2024-10-08T12:00:00",
+      "detalles": "Reservó una habitación en el hotel Example"
+    },
+    {
+      "auditoria_id": 2,
+      "usuario_id": 2,
+      "accion_realizada": "pago realizado",
+      "fecha_hora": "2024-10-11T10:30:00",
+      "detalles": "Realizó el pago de la reserva"
+    }
+  ],
+  "ROLES": [
+    {
+      "rol_id": 1,
+      "nombre_rol": "admin",
+      "descripcion": "Administrador del sistema"
+    },
+    {
+      "rol_id": 2,
+      "nombre_rol": "cliente",
+      "descripcion": "Usuario registrado"
+    }
+  ]
+}

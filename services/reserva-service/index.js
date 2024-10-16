@@ -2,7 +2,12 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 const path = require('path');
-const port = 4002;
+const cors = require('cors');
+
+const PORT = process.env.PORT || 4002;
+
+// Permitir solicitudes de cualquier lado.
+app.use(cors());
 
 // Middleware para el manejo de json.
 app.use(express.json());
@@ -23,4 +28,4 @@ app.get('/reservas', (req, res) => {
 });
 
 // Ruta del microservicio.
-app.listen(port, () => console.log(`Informe Service corriendo en http://localhost:${port}`));
+app.listen(PORT, () => console.log(`Informe Service corriendo en http://localhost:${PORT}`));

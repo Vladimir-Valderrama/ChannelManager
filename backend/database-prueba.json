@@ -129,7 +129,7 @@
     {
       "auditoria_id": 1,
       "usuario_id": 1,
-      "accion_realizada": "reserva realizada",
+      "accion_realizada": "pago realizada",
       "fecha_hora": "2024-10-08T12:00:00",
       "detalles": "Reservó una habitación en el hotel Example"
     },

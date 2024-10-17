@@ -2,7 +2,7 @@
 import '../styles/reservas.css' // Importar Css.
 import TablaReservas from '../components/Tabla_reservas'
 
-function App() {
+function AppReservas() {
   return (
     <>
     <div>
@@ -12,4 +12,4 @@ function App() {
   )
 }
 
-export default App
+export default AppReservas

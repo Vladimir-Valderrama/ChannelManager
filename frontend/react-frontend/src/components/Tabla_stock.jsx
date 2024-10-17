@@ -25,7 +25,7 @@ export default function TablaStock(){
     }, []);
 
     if (loading){
-        return <p>Cargando Reservas...</p>;
+        return <p>Cargando Stock...</p>;
     }
 
     return (
@@ -51,7 +51,16 @@ export default function TablaStock(){
                             <td>{stock.direccion}</td>
                             <td>{stock.numero_habitaciones}</td>
                             <td>{stock.categoria}</td>
-                            <td>{stock.servicios}</td>
+                            <td>
+                                {/* Mapea y muestra los servicios del hotel */}
+                                <ul>
+                                    {stock.servicios.map(servicio => (
+                                        <li key={servicio.servicio_id}>
+                                            {servicio.descripcion} - ${servicio.costo}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

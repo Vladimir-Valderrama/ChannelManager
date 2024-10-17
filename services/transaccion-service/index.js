@@ -1,24 +1,43 @@
 const express = require('express');
 const app = express();
-const port = 4003;
+const fs = require('fs');
+const path = require('path');
+const cors = require('cors');
 
-//conexion a mongodb
-const mongoose = require('mongoose');
+const PORT = process.env.PORT || 4002;
 
-// URL de conexión (para localhost)
-const uri = "mongodb://localhost:27017/db-piola";
+// Permitir solicitudes de cualquier lado.
+app.use(cors());
 
-// Conectar a MongoDB con Mongoose
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Conexión exitosa a MongoDB');
-  })
-  .catch(err => {
-    console.error('Error al conectar con MongoDB:', err);
-  });
+// Middleware para el manejo de json.
+app.use(express.json());
 
+// Ruta del archivo json (base de datos).
+const dbPath = path.join(__dirname, '..', '..', 'backend', 'database-prueba.json');
 
+// Funcion para leer la base de datos de json.
+const readData = () => {
+    const data = fs.readFileSync(dbPath, 'utf-8'); // Lee el archivo como texto
+    return JSON.parse(data); // Convierte el texto a un objeto de JavaScript
+};
 
-app.get('/get', (req, res) => res.send('Informe Service'));
-app.listen(port, () => console.log(`Servidor corriendo en http://localhost:${port}`));
+// Endpoint para obtener todos las reservas.
+app.get('/stock', async (req, res) => {
+    try {
+        // Leer los usuarios desde el archivo JSON.
+        const data = readData(); // Leer todo el archivo JSON
 
+        // Verifica si el archivo JSON contiene la propiedad "usuarios"
+        const hoteles = data.hoteles;  
+
+        res.json(hoteles);
+    } catch (error) {
+        console.error('Error al obtener las reservas:', error);
+        res.status(500).json({ error: 'Error al obtener las reservas' });
+    }
+});
+
+// Ruta del microservicio.
+app.listen(PORT, () => console.log(`Informe Service corriendo en http://localhost:${PORT}`));
+
+//console.log(readData())

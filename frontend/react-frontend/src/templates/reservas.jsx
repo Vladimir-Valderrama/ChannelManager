@@ -1,15 +1,15 @@
-//* eslint-disable react/jsx-key */
-import '../styles/reservas.css' // Importar Css.
-import TablaReservas from '../components/Tabla_reservas'
+import '../styles/reservas.css'; // Importar CSS.
+import TablaReservas from '../components/Tabla_reservas';
 
-function AppReservas() {
+// eslint-disable-next-line react/prop-types
+function AppReservas({ reservas }) {
   return (
     <>
-    <div>
-        <TablaReservas></TablaReservas>
-    </div>  
+      <div>
+        <TablaReservas reservas={reservas} />
+      </div>  
     </>
-  )
+  );
 }
 
-export default AppReservas
+export default AppReservas;

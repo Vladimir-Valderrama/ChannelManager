@@ -1,16 +1,15 @@
-//* eslint-disable react/jsx-key */
-import '../styles/stock.css' // Importar Css.
-import TablaStock from '../components/tabla_stock'
+import '../styles/stock.css'; // Importar CSS.
+import TablaStock from '../components/tabla_stock';
 
-
-function AppStock() {
+// eslint-disable-next-line react/prop-types
+function AppStock({ stock }) {
   return (
     <>
-    <div>
-        <TablaStock></TablaStock>
-    </div>  
+      <div>
+        <TablaStock stock={stock} />
+      </div>  
     </>
-  )
+  );
 }
 
-export default AppStock
+export default AppStock;

@@ -32,30 +32,34 @@ export default function TablaReservas(){
         <div>
             {/* Recorrer la base de datos y rellenar la tabla*/}
             <h2> Tabla de Reservas</h2>
-            <tr>
-                <th>ID Reserva</th>
-                <th>Fecha Reserva</th>
-                <th>Fecha Entrada</th>
-                <th>Fecha Salida</th>
-                <th>Estado Reserva</th>
-                <th>Hotel ID</th>
-                <th>Usuario ID</th>
-                <th>Ota ID</th>
-            </tr>
-            {reservas.map(reserva => (
-                <table key={reserva.reserva_id}>
+            <table>
+                <thead>
                     <tr>
-                        <td>{reserva.reserva_id}</td>
-                        <td>{reserva.fecha_reserva}</td>
-                        <td>{reserva.fecha_entrada}</td>
-                        <td>{reserva.fecha_salida}</td>
-                        <td>{reserva.estado_reserva}</td>
-                        <td>{reserva.hotel_id}</td>
-                        <td>{reserva.usuario_id}</td>
-                        <td>{reserva.ota_id}</td>
+                        <th>ID Reserva</th>
+                        <th>Fecha Reserva</th>
+                        <th>Fecha Entrada</th>
+                        <th>Fecha Salida</th>
+                        <th>Estado Reserva</th>
+                        <th>Hotel ID</th>
+                        <th>Usuario ID</th>
+                        <th>Ota ID</th>
                     </tr>
-                </table>
-            ))}
+                </thead>
+                <tbody>
+                    {reservas.map(reserva => (
+                        <tr key={reserva.reserva_id}>
+                            <td>{reserva.reserva_id}</td>
+                            <td>{reserva.fecha_reserva}</td>
+                            <td>{reserva.fecha_entrada}</td>
+                            <td>{reserva.fecha_salida}</td>
+                            <td>{reserva.estado_reserva}</td>
+                            <td>{reserva.hotel_id}</td>
+                            <td>{reserva.usuario_id}</td>
+                            <td>{reserva.ota_id}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };

@@ -1,23 +1,18 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { saveAs } from 'file-saver';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de tener esta línea para los estilos
 
 // eslint-disable-next-line react/prop-types
 export default function DescargarDatos({ reservas, stock }) {
     // Función para generar CSV con encabezados y descargarlo
     const downloadCSV = (headers, data, filename) => {
-        // Crear la fila de encabezados
         const headerRow = headers.join(',');
-
-        // Crear las filas de datos
         const dataRows = data.map(row =>
             Object.values(row).join(',')
         ).join('\n');
 
-        // Combinar encabezados y datos
         const csvContent = `${headerRow}\n${dataRows}`;
-
-        // Crear archivo Blob para el CSV
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         saveAs(blob, `${filename}.csv`);
     };
@@ -71,14 +66,18 @@ export default function DescargarDatos({ reservas, stock }) {
     };
 
     return (
-        <div>
-            <h2>Descargar Datos</h2>
-            <div>
+        <div className="container mt-4">
+            <h2 className="text-center">Descargar Datos</h2>
+            <div className="text-center">
                 {/* Botón para descargar Reservas */}
-                <button onClick={handleDownloadReservas}>Descargar Reservas como CSV</button>
+                <button className="btn btn-primary mx-2" onClick={handleDownloadReservas}>
+                    Descargar Reservas como CSV
+                </button>
 
                 {/* Botón para descargar Stock */}
-                <button onClick={handleDownloadStock}>Descargar Stock como CSV</button>
+                <button className="btn btn-secondary mx-2" onClick={handleDownloadStock}>
+                    Descargar Stock como CSV
+                </button>
             </div>
         </div>
     );

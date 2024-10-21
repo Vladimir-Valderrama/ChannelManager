@@ -1,16 +1,16 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// eslint-disable-next-line react/prop-types
 export default function TablaReservas({ reservas }) {
   if (!reservas || reservas.length === 0) {
     return <p>No hay reservas disponibles.</p>;
   }
 
   return (
-    <div>
-      <h2> Tabla de Reservas</h2>
-      <table>
-        <thead>
+    <div className="container mt-4">
+      <h2 className="text-center">Tabla de Reservas</h2>
+      <table className="table table-striped table-bordered">
+        <thead className="thead-dark">
           <tr>
             <th>ID Reserva</th>
             <th>Fecha Reserva</th>

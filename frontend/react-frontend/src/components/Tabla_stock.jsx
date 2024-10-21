@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function TablaStock({ stock }) {
   if (!stock || stock.length === 0) {
@@ -6,10 +7,10 @@ export default function TablaStock({ stock }) {
   }
 
   return (
-    <div>
-      <h2> Tabla de Stock</h2>
-      <table>
-        <thead>
+    <div className="container mt-4">
+      <h2 className="text-center">Tabla de Stock</h2>
+      <table className="table table-striped table-bordered">
+        <thead className="thead-dark">
           <tr>
             <th>hotel_id</th>
             <th>Nombre</th>

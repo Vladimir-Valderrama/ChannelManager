@@ -24,6 +24,7 @@ export default function DescargarDatos({ reservas, stock }) {
 
     // Manejar la descarga de Reservas
     const handleDownloadReservas = () => {
+        // Headers del CSV.
         const headers = [
             "ID Reserva",
             "Fecha Reserva",
@@ -33,7 +34,8 @@ export default function DescargarDatos({ reservas, stock }) {
             "Hotel ID",
             "Ota ID"
         ];
-
+        
+        // Datos del CSV.
         const reservasData = reservas.map(reserva => ({
             "ID Reserva": reserva.reserva_id,
             "Fecha Reserva": reserva.fecha_reserva,
@@ -49,6 +51,7 @@ export default function DescargarDatos({ reservas, stock }) {
 
     // Manejar la descarga de Stock
     const handleDownloadStock = () => {
+        // Headers del CSV.
         const headers = [
             "Hotel ID",
             "Nombre",
@@ -58,6 +61,7 @@ export default function DescargarDatos({ reservas, stock }) {
             "Servicios"
         ];
 
+        // Datos del CSV.
         const stockData = stock.map(hotel => ({
             "Hotel ID": hotel.hotel_id,
             "Nombre": hotel.nombre,

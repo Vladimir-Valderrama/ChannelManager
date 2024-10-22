@@ -1,88 +1,119 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de tener esta línea para los estilos
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// eslint-disable-next-line react/prop-types
-export default function DescargarDatos({ reservas, stock }) {
-    // Función para generar CSV con encabezados y descargarlo
+export default function DescargarDatos() {
+    const [reservas, setReservas] = useState([]);
+    const [stock, setStock] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+  // useEffect para obtener los datos de reservas y stock
+useEffect(() => {
+    const fetchData = async () => {
+    try {
+        // Fetch Reservas
+        const reservasResponse = await fetch('http://localhost:4002/reservas');
+        const reservasData = await reservasResponse.json();
+        setReservas(reservasData);
+
+        // Fetch Stock
+        const stockResponse = await fetch('http://localhost:4003/stock');
+        const stockData = await stockResponse.json();
+        setStock(stockData);
+
+        setLoading(false); // Datos cargados
+    } catch (error) {
+        console.error('Error al obtener los datos: ', error);
+        setLoading(false);
+    }
+    };
+
+    fetchData(); // Llamada para obtener los datos
+  }, []); // Solo se ejecuta una vez al montar el componente
+
+  // Función para generar CSV con encabezados y descargarlo
     const downloadCSV = (headers, data, filename) => {
-        const headerRow = headers.join(',');
-        const dataRows = data.map(row =>
-            Object.values(row).join(',')
-        ).join('\n');
+    const headerRow = headers.join(',');
+    const dataRows = data.map(row =>
+    Object.values(row).join(',')
+    ).join('\n');
 
-        const csvContent = `${headerRow}\n${dataRows}`;
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        saveAs(blob, `${filename}.csv`);
-    };
+    const csvContent = `${headerRow}\n${dataRows}`;
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, `${filename}.csv`);
+};
 
-    // Manejar la descarga de Reservas
+  // Manejar la descarga de Reservas
     const handleDownloadReservas = () => {
-        // Headers del CSV.
-        const headers = [
-            "ID Reserva",
-            "Fecha Reserva",
-            "Fecha Entrada",
-            "Fecha Salida",
-            "Estado Reserva",
-            "Hotel ID",
-            "Ota ID"
-        ];
-        
-        // Datos del CSV.
-        const reservasData = reservas.map(reserva => ({
-            "ID Reserva": reserva.reserva_id,
-            "Fecha Reserva": reserva.fecha_reserva,
-            "Fecha Entrada": reserva.fecha_entrada,
-            "Fecha Salida": reserva.fecha_salida,
-            "Estado Reserva": reserva.estado_reserva,
-            "Hotel ID": reserva.hotel_id,
-            "Ota ID": reserva.ota_id,
-        }));
+    // Headers del CSV.
+    const headers = [
+    "ID Reserva",
+    "Fecha Reserva",
+    "Fecha Entrada",
+    "Fecha Salida",
+    "Estado Reserva",
+    "Hotel ID",
+    "Ota ID"
+    ];
 
-        downloadCSV(headers, reservasData, 'reservas');
-    };
+    // Datos del CSV.
+    const reservasData = reservas.map(reserva => ({
+    "ID Reserva": reserva.reserva_id,
+    "Fecha Reserva": reserva.fecha_reserva,
+    "Fecha Entrada": reserva.fecha_entrada,
+    "Fecha Salida": reserva.fecha_salida,
+    "Estado Reserva": reserva.estado_reserva,
+    "Hotel ID": reserva.hotel_id,
+    "Ota ID": reserva.ota_id,
+    }));
 
-    // Manejar la descarga de Stock
-    const handleDownloadStock = () => {
-        // Headers del CSV.
-        const headers = [
-            "Hotel ID",
-            "Nombre",
-            "Direccion",
-            "Numero de Habitaciones",
-            "Categoria",
-            "Servicios"
-        ];
+    downloadCSV(headers, reservasData, 'reservas');
+};
 
-        // Datos del CSV.
-        const stockData = stock.map(hotel => ({
-            "Hotel ID": hotel.hotel_id,
-            "Nombre": hotel.nombre,
-            "Direccion": hotel.direccion,
-            "Numero de Habitaciones": hotel.numero_habitaciones,
-            "Categoria": hotel.categoria,
-            "Servicios": hotel.servicios.map(servicio => `${servicio.descripcion} - $${servicio.costo}`).join(' | ')
-        }));
+  // Manejar la descarga de Stock
+const handleDownloadStock = () => {
+    // Headers del CSV.
+    const headers = [
+    "Hotel ID",
+    "Nombre",
+    "Direccion",
+    "Numero de Habitaciones",
+    "Categoria",
+    "Servicios"
+    ];
 
-        downloadCSV(headers, stockData, 'stock');
-    };
+    // Datos del CSV.
+    const stockData = stock.map(hotel => ({
+    "Hotel ID": hotel.hotel_id,
+    "Nombre": hotel.nombre,
+    "Direccion": hotel.direccion,
+    "Numero de Habitaciones": hotel.numero_habitaciones,
+    "Categoria": hotel.categoria,
+    "Servicios": hotel.servicios.map(servicio => `${servicio.descripcion} - $${servicio.costo}`).join(' | ')
+    }));
 
-    return (
-        <div className="container mt-4">
-            <h2 className="text-center">Descargar Datos</h2>
-            <div className="text-center">
-                {/* Botón para descargar Reservas */}
-                <button className="btn btn-primary mx-2" onClick={handleDownloadReservas}>
-                    Descargar Reservas como CSV
-                </button>
+    downloadCSV(headers, stockData, 'stock');
+};
 
-                {/* Botón para descargar Stock */}
-                <button className="btn btn-secondary mx-2" onClick={handleDownloadStock}>
-                    Descargar Stock como CSV
-                </button>
-            </div>
+  // Mostrar un mensaje de carga mientras se obtienen los datos
+if (loading) {
+    return <p>Cargando datos...</p>;
+}
+
+return (
+    <div className="container mt-4">
+    <h2 className="text-center">Descargar Datos</h2>
+    <div className="text-center">
+        {/* Botón para descargar Reservas */}
+        <button className="btn btn-primary mx-2" onClick={handleDownloadReservas}>
+            Descargar Reservas como CSV
+        </button>
+
+        {/* Botón para descargar Stock */}
+        <button className="btn btn-secondary mx-2" onClick={handleDownloadStock}>
+            Descargar Stock como CSV
+        </button>
         </div>
+    </div>
     );
 }

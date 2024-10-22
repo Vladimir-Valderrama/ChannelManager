@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function TablaReservas({ reservas }) {
-  if (!reservas || reservas.length === 0) {
+export default function TablaReservas() {
+  const [reservas, setReservas] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // useEffect para obtener los datos desde el endpoint de reservas
+  useEffect(() => {
+    const fetchReservas = async () => {
+      try {
+        const response = await fetch('http://localhost:4002/reservas');
+        const data = await response.json();
+        setReservas(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error al obtener las reservas: ', error);
+        setLoading(false);
+      }
+    };
+
+    fetchReservas();
+  }, []);
+
+  if (loading) {
+    return <p>Cargando datos...</p>;
+  }
+
+  if (reservas.length === 0) {
     return <p>No hay reservas disponibles.</p>;
   }
 
@@ -22,7 +46,7 @@ export default function TablaReservas({ reservas }) {
           </tr>
         </thead>
         <tbody>
-          {reservas.map(reserva => (
+          {reservas.map((reserva) => (
             <tr key={reserva.reserva_id}>
               <td>{reserva.reserva_id}</td>
               <td>{reserva.fecha_reserva}</td>

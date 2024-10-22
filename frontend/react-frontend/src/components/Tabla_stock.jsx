@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function TablaStock({ stock }) {
+export default function TablaStock() {
+  const [stock, setStock] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // useEffect para obtener los datos desde el endpoint de stock
+  useEffect(() => {
+    const fetchStock = async () => {
+      try {
+        const response = await fetch('http://localhost:4003/stock');
+        const data = await response.json();
+        setStock(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error al obtener el stock: ', error);
+        setLoading(false);
+      }
+    };
+
+    fetchStock();
+  }, []);
+
+  if (loading) {
+    return <p>Cargando datos...</p>;
+  }
+
   if (!stock || stock.length === 0) {
     return <p>No hay stock disponible.</p>;
   }
@@ -12,7 +36,7 @@ export default function TablaStock({ stock }) {
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
           <tr>
-            <th>hotel_id</th>
+            <th>Hotel ID</th>
             <th>Nombre</th>
             <th>Dirección</th>
             <th>Número de Habitaciones</th>

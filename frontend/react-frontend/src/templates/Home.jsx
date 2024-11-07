@@ -1,5 +1,4 @@
 import React from 'react';
-import TablaReservas from '../components/Tabla_reservas';
 
 function AppHome(){
     return (

@@ -13,6 +13,5 @@ function MainApp(){
     )
 }
 
-
 // Render de la pantalla principal.
 createRoot(document.getElementById('root')).render(<MainApp />);

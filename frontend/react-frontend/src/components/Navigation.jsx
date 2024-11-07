@@ -14,7 +14,6 @@ export function NavBar() {
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to="/Reservas">Reservas</Nav.Link>
                             <Nav.Link as={Link} to="/Stock">Stock</Nav.Link>
-                            <Nav.Link as={Link} to="/Descargas">Descargas</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

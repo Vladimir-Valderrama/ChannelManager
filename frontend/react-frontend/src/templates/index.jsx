@@ -1,30 +1,37 @@
-import '../styles/informes.css'; // Importar CSS.
+// index.js
+import React, { useContext } from 'react';
+import { AuthProvider, AuthContext } from '../context/AuthContext';
 import { NavBar } from '../components/Navigation';
-// Importaciones para crear las rutas a los componntes del navbar.
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppReservas from './reservas';
 import AppStock from './stock';
-import AppDescargas from './Descargas';
 import AppHome from './Home';
 
 function AppIndex() {
-    return (
-        <>
-        <div>
-            <Router>
-                <NavBar/>
+    const { loadingToken } = useContext(AuthContext);
 
-                {/* Definimos las rutas del navbar */}
-                <Routes>
-                    <Route path='/' element={<AppHome/>}/>
-                    <Route path='/Reservas' element={<AppReservas/>}/>
-                    <Route path='/Stock' element={<AppStock/>}/>
-                    <Route path='/Descargas' element={<AppDescargas/>}/>
-                </Routes>
-            </Router>
-        </div>
-        </>
+    if (loadingToken) {
+        return <p>Cargando token...</p>;
+    }
+
+    return (
+        <Router>
+            <NavBar />
+            <Routes>
+                <Route path='/' element={<AppHome />} />
+                <Route path='/Reservas' element={<AppReservas />} />
+                <Route path='/Stock' element={<AppStock />} />
+            </Routes>
+        </Router>
     );
 }
 
-export default AppIndex;
+function MainApp() {
+    return (
+        <AuthProvider>
+            <AppIndex />
+        </AuthProvider>
+    );
+}
+
+export default MainApp;

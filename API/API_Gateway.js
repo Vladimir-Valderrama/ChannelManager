@@ -51,7 +51,7 @@ const validateJwt = (req, res, next) => {
   }
 };
 
-// Endpoint para refrescar el token
+// Endpoint para refrescar el token.
 app.post('/refresh-token', validateJwt, (req, res) => {
   try {
     const newToken = jwt.sign({ entity: req.entity }, SECRET_KEY, { expiresIn: '1h' });

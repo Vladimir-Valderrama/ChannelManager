@@ -15,6 +15,6 @@ const generateToken = (entity) => {
 
 // Generar un token para "cliente"
 const token = generateToken('cliente');
-console.log('Token generado:', token);
+//console.log('Token generado:', token);
 
 module.exports = generateToken;
